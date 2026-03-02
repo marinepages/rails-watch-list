@@ -1,0 +1,22 @@
+<h1><%= @list.name %></h1>
+
+<ul>
+  <% @list.movies.each do |movie| %>
+    <li>
+    <%= image_tag movie.poster_url, height: 350 %>
+    <%= movie.title %>
+    <%= movie.overview %>
+    <%= movie.rating %>
+
+
+    </li>
+    <% end %>
+</ul>
+
+<%= simple_form_for([@list, @bookmark]) do |f| %>
+<%= f.association :movie %>
+<%= f.input :comment, placeholder: "Give your comment" %>
+<%= f.submit "Add to list" %>
+<% end %>
+
+<%= link_to "Back", lists_path %>

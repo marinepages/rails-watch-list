@@ -7,4 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :lists, only: [:index, :show, :new, :create] do
+    resources :bookmarks, only: [:create] #le formulaire sera directement dans la show donc pas de new
+  end
+
+  resources :bookmarks, only: [:destroy]
+
+  root to: "lists#index"
 end
